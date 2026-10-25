@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>NetSpeed — Internet Speed Test</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- Animated background -->
+    <div class="background">
+        <div class="grid"></div>
+
+        <div class="orb orb1"></div>
+        <div class="orb orb2"></div>
+        <div class="orb orb3"></div>
+
+        <div class="particles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+
+
+    <!-- Navigation -->
+
+    <nav class="navbar">
+
+        <div class="brand">
+            <div class="brand-icon">⚡</div>
+
+            <div>
+                <div class="brand-name">
+                    Net<span>Speed</span>
+                </div>
+
+                <div class="brand-subtitle">
+                    INTERNET PERFORMANCE
+                </div>
+            </div>
+        </div>
+
+
+        <div class="nav-right">
+
+            <button class="nav-btn" id="historyButton">
+                <span>◷</span>
+                History
+            </button>
+
+            <button class="theme-btn" id="themeButton">
+                ☀
+            </button>
+
+        </div>
+
+    </nav>
+
+
+    <main>
+
+        <!-- Hero -->
+
+        <section class="hero">
+
+            <div class="online-badge">
+                <span class="online-dot"></span>
+                SYSTEM READY
+            </div>
+
+
+            <h1>
+                Test Your
+                <span>Internet Speed</span>
+            </h1>
+
+
+            <p class="hero-text">
+                Discover your real-world connection performance
+                with our modern speed testing engine.
+            </p>
+
+
+            <!-- Main Speedometer -->
+
+            <div class="speed-wrapper">
+
+                <div class="speed-ring">
+
+                    <div class="speed-ring-inner">
+
+                        <div class="speed-label">
+                            CURRENT SPEED
+                        </div>
+
+                        <div
+                            class="speed-number"
+                            id="speedNumber"
+                        >
+                            0
+                        </div>
+
+                        <div class="speed-unit">
+                            Mbps
+                        </div>
+
+                        <div
+                            class="speed-state"
+                            id="speedState"
+                        >
+                            READY
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <div class="speed-mark mark1"></div>
+                <div class="speed-mark mark2"></div>
+                <div class="speed-mark mark3"></div>
+                <div class="speed-mark mark4"></div>
+
+            </div>
+
+
+            <!-- Test button -->
+
+            <button
+                class="start-button"
+                id="startButton"
+            >
+                <span class="play-icon">▶</span>
+
+                <span id="buttonText">
+                    START TEST
+                </span>
+            </button>
+
+
+            <!-- Test status -->
+
+            <div class="test-progress">
+
+                <div class="progress-track">
+
+                    <div
+                        class="progress-fill"
+                        id="progressFill"
+                    ></div>
+
+                </div>
+
+                <div
+                    class="progress-status"
+                    id="progressStatus"
+                >
+                    Ready to test your connection
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Results -->
+
+        <section class="results-grid">
+
+            <div class="metric-card">
+
+                <div class="metric-top">
+
+                    <div class="metric-icon ping-icon">
+                        ◉
+                    </div>
+
+                    <span class="metric-title">
+                        PING
+                    </span>
+
+                </div>
+
+                <div class="metric-value">
+                    <span id="pingValue">--</span>
+                    <small>ms</small>
+                </div>
+
+                <div class="metric-description">
+                    Response time
+                </div>
+
+            </div>
+
+
+            <div class="metric-card download-card">
+
+                <div class="metric-top">
+
+                    <div class="metric-icon download-icon">
+                        ↓
+                    </div>
+
+                    <span class="metric-title">
+                        DOWNLOAD
+                    </span>
+
+                </div>
+
+                <div class="metric-value">
+                    <span id="downloadValue">--</span>
+                    <small>Mbps</small>
+                </div>
+
+                <div class="metric-description">
+                    Receiving speed
+                </div>
+
+            </div>
+
+
+            <div class="metric-card upload-card">
+
+                <div class="metric-top">
+
+                    <div class="metric-icon upload-icon">
+                        ↑
+                    </div>
+
+                    <span class="metric-title">
+                        UPLOAD
+                    </span>
+
+                </div>
+
+                <div class="metric-value">
+                    <span id="uploadValue">--</span>
+                    <small>Mbps</small>
+                </div>
+
+                <div class="metric-description">
+                    Sending speed
+                </div>
+
+            </div>
+
+
+            <div class="metric-card">
+
+                <div class="metric-top">
+
+                    <div class="metric-icon jitter-icon">
+                        ≋
+                    </div>
+
+                    <span class="metric-title">
+                        JITTER
+                    </span>
+
+                </div>
+
+                <div class="metric-value">
+                    <span id="jitterValue">--</span>
+                    <small>ms</small>
+                </div>
+
+                <div class="metric-description">
+                    Connection stability
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Live Graph -->
+
+        <section class="panel graph-panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <div class="panel-title">
+                        Network Performance
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Live speed monitoring
+                    </div>
+                </div>
+
+                <div class="live-indicator">
+                    <span></span>
+                    LIVE
+                </div>
+
+            </div>
+
+
+            <div class="graph">
+
+                <div class="graph-lines"></div>
+
+                <svg
+                    viewBox="0 0 1000 300"
+                    preserveAspectRatio="none"
+                >
+
+                    <defs>
+
+                        <linearGradient
+                            id="graphGradient"
+                            x1="0"
+                            x2="0"
+                            y1="0"
+                            y2="1"
+                        >
+
+                            <stop
+                                offset="0%"
+                                stop-color="#00d9ff"
+                                stop-opacity=".45"
+                            />
+
+                            <stop
+                                offset="100%"
+                                stop-color="#00d9ff"
+                                stop-opacity="0"
+                            />
+
+                        </linearGradient>
+
+                    </defs>
+
+
+                    <path
+                        id="graphArea"
+                        d="M0 260 L100 250 L200 220 L300 230 L400 180 L500 190 L600 140 L700 155 L800 100 L900 125 L1000 70 L1000 300 L0 300 Z"
+                        fill="url(#graphGradient)"
+                    />
+
+
+                    <path
+                        id="graphLine"
+                        d="M0 260 L100 250 L200 220 L300 230 L400 180 L500 190 L600 140 L700 155 L800 100 L900 125 L1000 70"
+                        fill="none"
+                        stroke="#00d9ff"
+                        stroke-width="5"
+                        stroke-linecap="round"
+                    />
+
+                </svg>
+
+            </div>
+
+        </section>
+
+
+        <!-- Connection Information -->
+
+        <section class="panel">
+
+            <div class="panel-header">
+
+                <div>
+                    <div class="panel-title">
+                        Connection Information
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Details about your current connection
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="info-grid">
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🌐
+                    </div>
+
+                    <div>
+                        <span>IP ADDRESS</span>
+                        <strong id="ipAddress">
+                            Detecting...
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        📡
+                    </div>
+
+                    <div>
+                        <span>CONNECTION</span>
+                        <strong id="connectionType">
+                            Detecting...
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🖥
+                    </div>
+
+                    <div>
+                        <span>OPERATING SYSTEM</span>
+                        <strong id="operatingSystem">
+                            Detecting...
+                        </strong>
+                    </div>
+
+                </div>
+
+
+                <div class="info-item">
+
+                    <div class="info-icon">
+                        🌎
+                    </div>
+
+                    <div>
+                        <span>TEST SERVER</span>
+                        <strong id="testServer">
+                            Automatic
+                        </strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- History -->
+
+        <section
+            class="panel history-panel"
+            id="historyPanel"
+        >
+
+            <div class="panel-header">
+
+                <div>
+                    <div class="panel-title">
+                        Test History
+                    </div>
+
+                    <div class="panel-subtitle">
+                        Your previous speed tests
+                    </div>
+                </div>
+
+                <button
+                    class="clear-button"
+                    id="clearHistory"
+                >
+                    Clear History
+                </button>
+
+            </div>
+
+
+            <div id="historyList">
+
+                <div class="empty-history">
+                    <div class="empty-icon">
+                        ◷
+                    </div>
+
+                    <p>No tests yet</p>
+
+                    <span>
+                        Run your first speed test to see
+                        your results here.
+                    </span>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <footer>
+
+        <div class="footer-logo">
+            ⚡ NetSpeed
+        </div>
+
+        <p>
+            Free Internet Speed Tester
+        </p>
+
+        <span>
+            Built with HTML, CSS & JavaScript
+        </span>
+
+    </footer>
+
+
+    <script src="script.js"></script>
+
+</body>
+</html>
